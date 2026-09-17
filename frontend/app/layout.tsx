@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Camaria Bevavy — FullStack Portfolio",
+  title: "Camaria Bevavy — FullStack Senior Software Engineer",
   description:
     "Portfolio of Camaria Bevavy, a Senior FullStack Software Engineer.",
 };

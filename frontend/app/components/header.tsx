@@ -1,6 +1,7 @@
 "use client";
 
 import { Home, Briefcase, User, PenSquare } from "lucide-react";
+import Image from "next/image";
 
 /**
  * Sticky site header.
@@ -48,7 +49,12 @@ export default function Header() {
           <div className="relative flex h-10 w-10 items-center justify-center">
             <span className="absolute inset-0 rounded-full bg-sky-500/25 blur-md" />
             <span className="relative flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/60 bg-gradient-to-br from-sky-500 to-blue-700 text-sm font-semibold text-white">
-              BC
+              <Image
+                src="/initials-512x512.png"
+                alt="Camaria Bevavy initials"
+                width={512}
+                height={512}
+              />
             </span>
           </div>
           <span className="text-[0.95rem] font-semibold text-slate-100">

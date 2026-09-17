@@ -52,8 +52,8 @@ export default function Header() {
               <Image
                 src="/initials-512x512.png"
                 alt="Camaria Bevavy initials"
-                width={512}
-                height={512}
+                width={40}
+                height={40}
               />
             </span>
           </div>

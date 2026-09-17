@@ -41,7 +41,7 @@ export default function Hero() {
         {/* photo / initials fallback */}
         <div className="relative flex h-44 w-44 items-center justify-center overflow-hidden rounded-full border border-sky-400/50 bg-gradient-to-br from-sky-500 to-blue-800">
           <Image
-            src="/avatar.jpg"
+            src="/my-image-cartoon.jpg"
             alt="Camaria E. Bevavy"
             fill
             sizes="176px"

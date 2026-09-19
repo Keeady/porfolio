@@ -22,8 +22,8 @@ export interface ProjectCardProps {
   subtitle: string;
   description: string;
   skills: string[];
-  imageSrc?: string;
-  companyIcon?: ReactNode; // pass a small logo/img; falls back to a building icon
+  image_url?: string;
+  companyIcon?: ReactNode;
 }
 
 export default function ProjectCard({
@@ -31,7 +31,7 @@ export default function ProjectCard({
   subtitle,
   description,
   skills,
-  imageSrc,
+  image_url,
   companyIcon,
 }: ProjectCardProps) {
   return (
@@ -39,7 +39,9 @@ export default function ProjectCard({
       {/* the "stamp" — affixed top-right, perforation via dashed border, slight rotation */}
       <div className="absolute -right-3 -top-4 z-10 flex h-16 w-14 rotate-[7deg] items-center justify-center border-2 border-dashed border-[#3B5568] bg-[#f6efdd] shadow-sm">
         <div className="flex h-full w-full items-center justify-center border border-[#3B5568]/40 m-1">
-          {companyIcon ?? <Building2 size={20} strokeWidth={1.5} className="text-[#3B5568]" />}
+          {companyIcon ?? (
+            <Building2 size={20} strokeWidth={1.5} className="text-[#3B5568]" />
+          )}
         </div>
       </div>
 
@@ -51,7 +53,9 @@ export default function ProjectCard({
             <h3 className="font-serif text-xl font-bold tracking-tight text-[#2E2418]">
               {title}
             </h3>
-            <p className="mt-1 font-serif italic text-sm text-[#5c4f3d]">{subtitle}</p>
+            <p className="mt-1 font-serif italic text-sm text-[#5c4f3d]">
+              {subtitle}
+            </p>
           </div>
 
           {/* dashed divider — mirrors a real postcard's message/address rule */}
@@ -61,11 +65,19 @@ export default function ProjectCard({
           <div className="flex gap-5">
             {/* left: image placeholder */}
             <div className="flex h-40 w-32 flex-shrink-0 items-center justify-center border border-[#7A6A50]/60 bg-[#e9dcc0]">
-              {imageSrc ? (
+              {image_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imageSrc} alt={title} className="h-full w-full object-cover" />
+                <img
+                  src={image_url}
+                  alt={title}
+                  className="h-full w-full object-cover"
+                />
               ) : (
-                <ImageIcon size={28} strokeWidth={1.5} className="text-[#7A6A50]" />
+                <ImageIcon
+                  size={28}
+                  strokeWidth={1.5}
+                  className="text-[#7A6A50]"
+                />
               )}
             </div>
 
@@ -78,14 +90,15 @@ export default function ProjectCard({
               <div className="my-4 border-t border-dashed border-[#7A6A50]/50" />
 
               <div className="flex flex-wrap gap-1.5">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 font-mono text-[0.65rem] font-bold uppercase tracking-wide text-[#3B5568]"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {skills &&
+                  skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 font-mono text-[0.65rem] font-bold uppercase tracking-wide text-[#3B5568]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
               </div>
             </div>
           </div>

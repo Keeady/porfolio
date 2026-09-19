@@ -6,7 +6,6 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
     "python-dotenv>=1.2.3",
     "sqlalchemy>=2.0.54",
-    "uuid>=1.30",
 ]
 
 [tool.vercel]

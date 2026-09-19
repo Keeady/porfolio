@@ -31,3 +31,12 @@ archive.zip
 .DS_Store
 
 .codspeed
+
+.vercel/
+.venv/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env*
+.vercel

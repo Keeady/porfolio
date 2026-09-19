@@ -20,6 +20,9 @@ connect_args.
 
 import os
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATABASE_URL = os.environ["POSTGRES_URL"]
 

@@ -24,7 +24,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.environ["POSTGRES_URL"]
+PASSWORD = os.getenv("password")
+USER = os.getenv("user")
+HOST = os.getenv("host")
+DBNAME = os.getenv("dbname")
+PORT = os.getenv("port")
+
+DATABASE_URL = f"postgresql+asyncpg://{USER}:{PASSWORD}@{HOST}:{PORT}/{DBNAME}"
 
 engine = create_async_engine(
     DATABASE_URL,

@@ -14,7 +14,7 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.project import Project
+from db.project import Project
 
 
 class ProjectRepository(Protocol):

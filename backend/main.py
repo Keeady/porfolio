@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import Depends, HTTPException
 from api.projects import get_projects
 from sqlalchemy.ext.asyncio import AsyncSession
 from db.session import get_db_session
 from repositories.project_repository import SqlAlchemyProjectRepository
-from services.project_service import ProjectService
+from services.projects.project_service import ProjectService
 
 app = FastAPI()
 

@@ -49,7 +49,7 @@ export default function ChatWidget({ url }: IChatWidget) {
         body: JSON.stringify({ message: text }),
       });
 
-      if (!res.body) throw new Error("No response body");
+      if (!res.ok || !res.body) throw new Error("No response body");
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();

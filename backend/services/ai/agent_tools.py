@@ -68,7 +68,7 @@ class AgentToolExecutor:
 
     async def execute(self, tool_name: str, tool_input: dict[str, Any]) -> str:
         if tool_name == "get_projects":
-            projects = await self._project_service.get_featured_projects()
+            projects = await self._project_service.get_project_list()
             return self._serialize_projects(projects)
 
         if tool_name == "get_project_by_id":

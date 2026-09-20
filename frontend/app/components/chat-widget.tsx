@@ -30,8 +30,7 @@ export default function ChatWidget({ url }: IChatWidget) {
 
   async function sendMessage() {
     const text = input.trim();
-    if (!text || streaming) {
-      console.log(url);
+    if (!url || !text || streaming) {
       return;
     }
 
@@ -44,7 +43,7 @@ export default function ChatWidget({ url }: IChatWidget) {
     setStreaming(true);
 
     try {
-      const res = await fetch(`http://localhost:8000/chat`, {
+      const res = await fetch(`${url}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),

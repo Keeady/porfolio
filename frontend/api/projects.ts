@@ -1,6 +1,7 @@
 export async function getProjects() {
   const url = process.env.API_HOST;
   if (!url) {
+    console.log("getProjects " + url);
     return;
   }
 

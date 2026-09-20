@@ -16,7 +16,7 @@ def get_project_service(
 
 def get_bio_service(
     session: AsyncSession = Depends(get_db_session),
-) -> ProjectService:
+) -> BioService:
     repository = SqlAlchemyBioRepository(session)
     return BioService(repository)
 

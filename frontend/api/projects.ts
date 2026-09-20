@@ -1,7 +1,16 @@
 export async function getProjects() {
-  const res = await fetch(`${process.env.API_HOST}/projects`);
-  if (!res.ok){
-     throw new Error("Failed to fetch projects");
+  const url = process.env.API_HOST;
+  if (!url) {
+    return;
   }
-  return res.json();
+
+  try {
+    const res = await fetch(`${url}/projects`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch projects");
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
 }

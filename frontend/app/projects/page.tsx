@@ -35,7 +35,7 @@ export default async function Projects() {
 }
 
 function getCompanyIcon(company: string) {
-  if (["outlook", "teams"].includes(company)) {
+  if (["outlook", "teams", "spotapaw"].includes(company)) {
     return (
       <Image
         src={`/${company}.png`}

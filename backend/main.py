@@ -37,8 +37,6 @@ app.add_middleware(
         "http://localhost:3000",
         PRODUCTION_ORIGIN,
     ],
-    # Matches any Vercel preview URL 
-    allow_origin_regex=r"https://keeady.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],

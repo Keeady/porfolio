@@ -39,7 +39,7 @@ app.add_middleware(
     ],
     # Matches any Vercel preview URL 
     allow_origin_regex=r"^https://keeady.*\.vercel\.app$",
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )

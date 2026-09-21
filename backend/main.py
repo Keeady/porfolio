@@ -38,7 +38,7 @@ app.add_middleware(
         PRODUCTION_ORIGIN,
     ],
     # Matches any Vercel preview URL 
-    allow_origin_regex=r"https://keeady.*\.vercel\.app",
+    allow_origin_regex=r"^https://keeady.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
@@ -65,7 +65,7 @@ def get_agent_service(session: AsyncSession = Depends(get_db_session)) -> AgentS
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello World!"}
+    return {"message": PRODUCTION_ORIGIN}
 
 @app.get("/projects")
 async def project_list(service: ProjectService = Depends(get_project_service)):

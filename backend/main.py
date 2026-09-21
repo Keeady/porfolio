@@ -29,19 +29,20 @@ from services.ai.chat_service import ChatRequest
 
 app = FastAPI()
 
-PRODUCTION_ORIGIN = os.environ.get("FRONTEND_URL", "")
+#PRODUCTION_ORIGIN = os.environ.get("FRONTEND_URL", "")
+
+origins = [
+    "http://localhost:3000",
+    "https://keeady.vercel.app"
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        PRODUCTION_ORIGIN,
-    ],
-    # Matches any Vercel preview URL 
+    allow_origins=origins,
     allow_origin_regex=r"^https://keeady.*\.vercel\.app$",
-    allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -65,7 +66,7 @@ def get_agent_service(session: AsyncSession = Depends(get_db_session)) -> AgentS
 
 @app.get("/")
 def read_root():
-    return {"message": PRODUCTION_ORIGIN}
+    return {"message": "hello"}
 
 @app.get("/projects")
 async def project_list(service: ProjectService = Depends(get_project_service)):
@@ -78,6 +79,11 @@ async def bio_list(service: BioService = Depends(get_bio_service)):
     return results
 
 @app.post("/chat")
+def chat():
+    return {"message": "hello world"}
+
+'''
+@app.post("/chat")
 async def chat(
     body: ChatRequest,
     agent_service: AgentService = Depends(get_agent_service)):
@@ -88,3 +94,4 @@ async def chat(
  
     return StreamingResponse(event_stream(), media_type="text/event-stream")
  
+'''

@@ -13,6 +13,7 @@ export default function Footer() {
           href="https://www.flaticon.com/free-icons/microsoft"
           title="microsoft icons"
           className="text-xs text-slate-500 transition-colors hover:text-sky-300"
+          target="_blank"
         >
           Microsoft icons created by Enamo Studios - Flaticon
         </a>
@@ -20,9 +21,27 @@ export default function Footer() {
           href="https://www.flaticon.com/free-icons/logos"
           title="logos icons"
           className="text-xs text-slate-500 transition-colors hover:text-sky-300"
+          target="_blank"
         >
           Logos icons created by pocike - Flaticon
         </a>
+        <a
+          href="https://cassymari.github.io/Portfolio-profissional/#inicio"
+          title="hero page design"
+          className="text-xs text-slate-500 transition-colors hover:text-sky-300"
+          target="_blank"
+        >
+          Hero page inspired by Cassiane.dev
+        </a>
+        <a
+          href="https://lottiefiles.com/free-animation/happy-dog-JQlCkLqWSP"
+          title="happy dog animation"
+          className="text-xs text-slate-500 transition-colors hover:text-sky-300"
+          target="_blank"
+        >
+          Happy Dog animation by Margarita Ivanchikova - LottieFiles
+        </a>
+        
       </div>
     </footer>
   );

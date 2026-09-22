@@ -101,7 +101,7 @@ export default function Hero() {
           <LinkedinIcon size={18} />
         </a>
         <a
-          href="mailto:bbt@gmail.com"
+          href="mailto:bcamaria@gmail.com"
           aria-label="Email"
           className="flex h-11 w-11 items-center justify-center rounded-full border border-sky-900 bg-[#0A1B2E] text-slate-300 transition-colors hover:border-sky-400/60 hover:text-sky-300"
         >

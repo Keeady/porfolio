@@ -23,6 +23,13 @@ export default function Footer() {
         >
           Logos icons created by pocike - Flaticon
         </a>
+        <a
+          href="https://cassymari.github.io/Portfolio-profissional/#inicio"
+          title="hero page design"
+          className="text-xs text-slate-500 transition-colors hover:text-sky-300"
+        >
+          Hero page inspired by Cassiane.dev
+        </a>
       </div>
     </footer>
   );

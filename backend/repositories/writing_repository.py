@@ -13,6 +13,7 @@ from uuid import UUID
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from db.writing import Writing
 
@@ -38,6 +39,6 @@ class SqlAlchemyWritingRepository:
 
     async def get_by_id(self, post_id: UUID) -> Writing | None:
         result = await self._session.execute(
-            select(Writing).where(Writing.id == post_id)
+            select(Writing).where(Writing.id == post_id).options(selectinload(Writing.bodies))
         )
         return result.scalar_one_or_none()

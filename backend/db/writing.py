@@ -50,6 +50,6 @@ class Writing(Base):
     bodies: Mapped[list["WritingBody"]] = relationship(
         back_populates="writing",
         order_by="WritingBody.created_at",
-        lazy="selectin",
+        lazy="raise",
     )
 

@@ -5,10 +5,7 @@ Next.js Server Component calls server-to-server — no CORS needed there).
  
 Handles three origins you'll actually hit:
   1. Local Next.js dev server (localhost:3000)
-  2. Your production Vercel domain
-  3. Vercel PREVIEW deployments, which get random subdomains like
-     your-project-git-branch-username.vercel.app — handled via regex
-     since you can't list them individually.
+  2. Production Vercel domain
 """
  
 import json
@@ -26,6 +23,8 @@ from repositories.bio_repository import SqlAlchemyBioRepository
 from fastapi.responses import StreamingResponse
 from services.ai.agent_service import AgentService
 from services.ai.chat_service import ChatRequest
+from services.posts.writing_service import WritingService
+from repositories.writing_repository import SqlAlchemyWritingRepository
 
 app = FastAPI()
 
@@ -60,6 +59,11 @@ def get_agent_service(session: AsyncSession = Depends(get_db_session)) -> AgentS
     project_service = ProjectService(repository)
     return AgentService(project_service)
 
+def get_writing_service(session: AsyncSession = Depends(get_db_session),
+) -> WritingService:
+    repository = SqlAlchemyWritingRepository(session)
+    return WritingService(repository)
+
 
 @app.get("/")
 def read_root():
@@ -86,3 +90,12 @@ async def chat(
  
     return StreamingResponse(event_stream(), media_type="text/event-stream")
  
+@app.get("/writings")
+async def writing_list(service: WritingService = Depends(get_writing_service)):
+    results = await service.get_writing_list()
+    return results
+
+@app.get("/writings/{post_id}")
+async def writing_by_id(post_id: int, service: WritingService = Depends(get_writing_service)):
+    results = await service.get_writing(post_id)
+    return results

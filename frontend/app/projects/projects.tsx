@@ -62,9 +62,9 @@ export default function ProjectCard({
           <div className="my-5 border-t border-dashed border-[#7A6A50]/60" />
 
           {/* body: left image, right (description over skills) */}
-          <div className="flex gap-5">
+          <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
             {/* left: image placeholder */}
-            <div className="flex h-40 w-40 flex-shrink-0 items-center justify-center border border-[#7A6A50]/60 bg-[#e9dcc0]">
+            <div className="flex h-40 w-40 items-center justify-center flex-shrink-0 border border-[#7A6A50]/60 bg-[#e9dcc0]">
               {image_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -82,7 +82,7 @@ export default function ProjectCard({
             </div>
 
             {/* right: dashed vertical rule, then top/bottom split */}
-            <div className="flex flex-1 flex-col border-l border-dashed border-[#7A6A50]/60 pl-5">
+            <div className="flex flex-col sm:border-l border-dashed border-[#7A6A50]/60 pl-5">
               <p className="font-serif text-[0.9rem] leading-relaxed text-[#2E2418]">
                 {description}
               </p>

@@ -9,9 +9,8 @@ without touching business logic.
 """
 
 from typing import Protocol
-from uuid import UUID
 
-from sqlalchemy import select
+from sqlalchemy import select, Integer
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -22,7 +21,7 @@ class WritingRepository(Protocol):
     """Interface the service layer depends on."""
 
     async def get_all(self) -> list[Writing]: ...
-    async def get_by_id(self, project_id: UUID) -> Writing | None: ...
+    async def get_by_id(self, post_id: Integer) -> Writing | None: ...
 
 
 class SqlAlchemyWritingRepository:
@@ -37,7 +36,7 @@ class SqlAlchemyWritingRepository:
         )
         return list(result.scalars().all())
 
-    async def get_by_id(self, post_id: UUID) -> Writing | None:
+    async def get_by_id(self, post_id: Integer) -> Writing | None:
         result = await self._session.execute(
             select(Writing).where(Writing.id == post_id).options(selectinload(Writing.bodies))
         )

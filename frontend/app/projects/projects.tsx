@@ -64,7 +64,7 @@ export default function ProjectCard({
           {/* body: left image, right (description over skills) */}
           <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
             {/* left: image placeholder */}
-            <div className="flex h-40 w-40 flex-shrink-0 border border-[#7A6A50]/60 bg-[#e9dcc0]">
+            <div className="flex h-40 w-40 items-center justify-center flex-shrink-0 border border-[#7A6A50]/60 bg-[#e9dcc0]">
               {image_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img

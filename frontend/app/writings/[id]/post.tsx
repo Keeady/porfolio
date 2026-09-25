@@ -38,7 +38,7 @@ function BodyBlock({ body }: { body: WritingBody }) {
   return (
     <div className="mb-6 last:mb-0">
       {body.header && (
-        <h3 className="mb-2 font-[family-name:var(--font-caveat)] text-xl font-bold text-[#2E2418]">
+        <h3 className={`mb-2 ${caveat.className} text-xl font-bold text-[#2E2418]`}>
           {body.header}
         </h3>
       )}
@@ -76,7 +76,7 @@ export default function PostDetail({ post }: { post: WritingWithBodies }) {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 font-[family-name:var(--font-patrick)] text-xs text-[#3B5568]"
+                  className={`border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 ${patrickHand.className} text-xs text-[#3B5568]`}
                 >
                   {tag}
                 </span>

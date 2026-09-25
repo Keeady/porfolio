@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Geist, Geist_Mono, Caveat, Patrick_Hand } from "next/font/google";
+import { Caveat, Patrick_Hand } from "next/font/google";
 
 /**
  * Writings list — post card. Same postcard family as ProjectCard/BioCard
@@ -52,7 +52,7 @@ export function PostCard({ post }: { post: Writing }) {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 font-[family-name:var(--font-patrick)] text-xs text-[#3B5568]"
+                  className={`border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 ${patrickHand.className} text-xs text-[#3B5568]`}
                 >
                   {tag}
                 </span>

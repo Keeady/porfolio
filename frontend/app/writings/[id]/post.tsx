@@ -66,13 +66,13 @@ export default function PostDetail({ post }: { post: WritingWithBodies }) {
       <div className="border-[3px] border-[#7A6A50] bg-[#f6efdd] p-1.5 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
         <div className="border border-dashed border-[#7A6A50]/70 bg-[#F1E7D0] p-8">
           {/* title */}
-          <h1 className={`mb-3 ${caveat.className} text-4xl font-bold text-[#2E2418]`}>
+          <h1 className={`mb-3 ${caveat.className} text-4xl font-bold text-[#2E2418] text-center`}>
             {title}
           </h1>
 
           {/* tags, directly under title */}
           {tags && tags.length > 0 && (
-            <div className="mb-5 flex flex-wrap gap-1.5">
+            <div className="mb-5 flex flex-wrap gap-1.5 justify-center">
               {tags.map((tag) => (
                 <span
                   key={tag}

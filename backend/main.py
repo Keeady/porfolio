@@ -11,7 +11,7 @@ Handles three origins you'll actually hit:
 import json
 import os
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -91,7 +91,10 @@ async def chat(
     return StreamingResponse(event_stream(), media_type="text/event-stream")
  
 @app.get("/writings")
-async def writing_list(service: WritingService = Depends(get_writing_service)):
+async def writing_list(
+    response: Response,
+    service: WritingService = Depends(get_writing_service)):
+    response.headers["Vercel-Cache-Tag"] = "writings"
     results = await service.get_writing_list()
     return results
 

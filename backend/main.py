@@ -102,7 +102,7 @@ async def writing_list(
 @app.get("/writings/{post_id}")
 async def writing_by_id(response: Response, post_id: int, service: WritingService = Depends(get_writing_service)):
     results = await service.get_writing(post_id)
-    response.headers["Vercel-Cache-Tag"] = "writings_" + post_id
+    response.headers["Vercel-Cache-Tag"] = f"writings_{post_id}"
     response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
     response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
     response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"

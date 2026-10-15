@@ -1,13 +1,3 @@
-"""
-CORS setup for the FastAPI backend. Needed because ChatWidget.tsx calls
-this API directly from the browser (unlike /api/projects, which your
-Next.js Server Component calls server-to-server — no CORS needed there).
- 
-Handles three origins you'll actually hit:
-  1. Local Next.js dev server (localhost:3000)
-  2. Production Vercel domain
-"""
- 
 import json
 import os
 
@@ -70,13 +60,21 @@ def read_root():
     return {"message": "Hello World!"}
 
 @app.get("/projects")
-async def project_list(service: ProjectService = Depends(get_project_service)):
+async def project_list(response: Response, service: ProjectService = Depends(get_project_service)):
     results = await service.get_project_list()
+    response.headers["Vercel-Cache-Tag"] = "projects"
+    response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
     return results
 
 @app.get("/bio")
-async def bio_list(service: BioService = Depends(get_bio_service)):
+async def bio_list(response: Response, service: BioService = Depends(get_bio_service)):
     results = await service.get_bio_list()
+    response.headers["Vercel-Cache-Tag"] = "bio"
+    response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
     return results
 
 @app.post("/chat")
@@ -94,11 +92,18 @@ async def chat(
 async def writing_list(
     response: Response,
     service: WritingService = Depends(get_writing_service)):
-    response.headers["Vercel-Cache-Tag"] = "writings"
     results = await service.get_writing_list()
+    response.headers["Vercel-Cache-Tag"] = "writings"
+    response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
     return results
 
 @app.get("/writings/{post_id}")
-async def writing_by_id(post_id: int, service: WritingService = Depends(get_writing_service)):
+async def writing_by_id(response: Response, post_id: int, service: WritingService = Depends(get_writing_service)):
     results = await service.get_writing(post_id)
+    response.headers["Vercel-Cache-Tag"] = "writings_" + post_id
+    response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
+    response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600"
     return results

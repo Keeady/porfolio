@@ -99,9 +99,8 @@ function Brand({ onClick }: { onClick?: () => void }) {
         <Image
           src="/moon.png"
           alt="Restless Moon Studio logo"
-          width={100}
-          height={50}
-          // className="h-auto w-[34px] sm:w-[40px]"
+          width={64}
+          height={64}
           priority
         />
       </div>

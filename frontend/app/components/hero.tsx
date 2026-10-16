@@ -277,7 +277,7 @@ export default function Hero() {
         </Link>
 
         <Link
-          href="/contact"
+          href="/services"
           className="group inline-flex min-w-[190px] items-center justify-center gap-2 rounded-full border border-sky-500/40 bg-sky-500/10 px-7 py-3.5 text-sm font-semibold text-sky-200 transition-all hover:border-sky-400 hover:bg-sky-500/20"
         >
           <BriefcaseBusiness size={18} />

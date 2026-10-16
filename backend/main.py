@@ -5,7 +5,9 @@ from fastapi import FastAPI, Depends, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.ext.asyncio import AsyncSession
+from backend.schemas.contact_inquiry import ContactInquiryCreated
 from repositories.project_repository import SqlAlchemyProjectRepository
+from repositories.contact_repository import SqlAlchemyContactInquiryRepository
 from services.projects.project_service import ProjectService
 from db.session import get_db_session
 from services.bio.bio_service import BioService
@@ -15,7 +17,19 @@ from services.ai.agent_service import AgentService
 from services.ai.chat_service import ChatRequest
 from services.posts.writing_service import WritingService
 from repositories.writing_repository import SqlAlchemyWritingRepository
-
+from fastapi import Depends, FastAPI, status
+from sqlalchemy.orm import Session
+from repositories.contact_repository import (
+    ContactInquiryRepository,
+)
+from schemas.contact_inquiry import (
+    ContactInquiryCreate,
+    ContactInquiryCreated,
+    ContactInquiryResponse,
+)
+from services.contact.contact_inquiry import (
+    ContactInquiryService,
+)
 app = FastAPI()
 
 PRODUCTION_ORIGIN = os.environ.get("FRONTEND_URL", "")
@@ -53,6 +67,12 @@ def get_writing_service(session: AsyncSession = Depends(get_db_session),
 ) -> WritingService:
     repository = SqlAlchemyWritingRepository(session)
     return WritingService(repository)
+
+def get_contact_inquiry_service(
+    session: AsyncSession = Depends(get_db_session),
+) -> ContactInquiryService:
+    repository = SqlAlchemyContactInquiryRepository(session)
+    return ContactInquiryService(repository)
 
 
 @app.get("/")
@@ -107,3 +127,21 @@ async def writing_by_id(response: Response, post_id: int, service: WritingServic
     response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
     response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
     return results
+
+@app.post(
+    "/v1/contact",
+    response_model=ContactInquiryCreated,
+    status_code=status.HTTP_201_CREATED,
+)
+def create_contact_inquiry(
+    payload: ContactInquiryCreate,
+    service: ContactInquiryService = Depends(
+        get_contact_inquiry_service
+    ),
+):
+    inquiry = service.create_inquiry(payload)
+
+    return ContactInquiryCreated(
+        success=True,
+        inquiry=ContactInquiryResponse.model_validate(inquiry),
+    )

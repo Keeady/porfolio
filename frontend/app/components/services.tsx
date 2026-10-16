@@ -107,7 +107,7 @@ export default function ServicesSection() {
           </div>
 
           <Link
-            href="/contact"
+            href="/contact?type=project"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-[#040B14] transition-all hover:scale-[1.03] hover:bg-sky-300"
           >
             Let's Talk

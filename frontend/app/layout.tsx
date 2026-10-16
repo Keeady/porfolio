@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Restless Moon Studio | Apps, SaaS & Custom Software Development",
   description:
-    "An independent software studio that builds apps, SaaS products, and custom software solutions with thoughtful design, scalable engineering, and AI-powered capabilities.",
+    "Restless Moon Studio builds apps, SaaS products, and custom software solutions with thoughtful design, scalable engineering, and AI-powered capabilities.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

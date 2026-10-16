@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Camaria Bevavy — FullStack Senior Software Engineer",
+  title: "Restless Moon Studio | Apps, SaaS & Custom Software Development",
   description:
-    "Portfolio of Camaria Bevavy, a Senior FullStack Software Engineer.",
+    "An independent software studio that builds apps, SaaS products, and custom software solutions with thoughtful design, scalable engineering, and AI-powered capabilities.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

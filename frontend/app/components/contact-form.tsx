@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -10,6 +9,7 @@ import {
   LoaderCircle,
   MessageCircle,
 } from "lucide-react";
+import { submitForm } from "@/api/contact";
 
 type InquiryType = "project" | "general";
 type SubmissionStatus = "idle" | "success" | "error";
@@ -17,13 +17,17 @@ type SubmissionStatus = "idle" | "success" | "error";
 const fieldClass =
   "w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400";
 
-export function ContactForm() {
+type ContactFormProps = {
+  initialType: InquiryType;
+};
+export function ContactForm({ initialType }: ContactFormProps) {
   const searchParams = useSearchParams();
 
-  const [selectedType, setSelectedType] =
-    useState<InquiryType | null>(null);
+  const [selectedType, setSelectedType] = useState<InquiryType | null>(
+    initialType,
+  );
 
-  const type: InquiryType =
+  const inquiryType: InquiryType =
     selectedType ??
     (searchParams.get("type") === "project" ? "project" : "general");
 
@@ -41,18 +45,9 @@ export function ContactForm() {
     setStatus("idle");
 
     try {
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          type,
-        }),
-      });
+      const response = await submitForm(data, inquiryType);
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to send message");
       }
 
@@ -91,7 +86,7 @@ export function ContactForm() {
             },
           ].map((option) => {
             const Icon = option.icon;
-            const active = type === option.value;
+            const active = inquiryType === option.value;
 
             return (
               <label
@@ -106,7 +101,7 @@ export function ContactForm() {
                   type="radio"
                   name="inquiryType"
                   value={option.value}
-                  checked={active}
+                  checked={option.value === selectedType}
                   onChange={() => {
                     setSelectedType(option.value);
                     setStatus("idle");
@@ -119,9 +114,7 @@ export function ContactForm() {
                     <CheckCircle2 className="h-5 w-5 text-violet-300" />
                   )}
                 </div>
-                <p className="mt-4 font-semibold text-white">
-                  {option.title}
-                </p>
+                <p className="mt-4 font-semibold text-white">{option.title}</p>
                 <p className="mt-1 text-sm text-slate-400">
                   {option.description}
                 </p>
@@ -133,7 +126,10 @@ export function ContactForm() {
         <div className="space-y-6">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-slate-200">
+              <label
+                htmlFor="contact-name"
+                className="mb-2 block text-sm font-medium text-slate-200"
+              >
                 Name *
               </label>
               <input
@@ -149,7 +145,10 @@ export function ContactForm() {
             </div>
 
             <div>
-              <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-slate-200">
+              <label
+                htmlFor="contact-email"
+                className="mb-2 block text-sm font-medium text-slate-200"
+              >
                 Email *
               </label>
               <input
@@ -165,10 +164,13 @@ export function ContactForm() {
             </div>
           </div>
 
-          {type === "project" && (
+          {inquiryType === "project" && (
             <>
               <div>
-                <label htmlFor="project-type" className="mb-2 block text-sm font-medium text-slate-200">
+                <label
+                  htmlFor="project-type"
+                  className="mb-2 block text-sm font-medium text-slate-200"
+                >
                   What can we help you build?
                 </label>
                 <select
@@ -178,19 +180,26 @@ export function ContactForm() {
                   defaultValue=""
                   className={fieldClass}
                 >
-                  <option value="" disabled>Select a service</option>
+                  <option value="" disabled>
+                    Select a service
+                  </option>
                   <option value="web">Web Application</option>
                   <option value="mobile">Mobile Application</option>
                   <option value="saas">SaaS / MVP</option>
                   <option value="ai">AI Integration</option>
                   <option value="backend">Backend & APIs</option>
-                  <option value="improvement">Existing Product Improvements</option>
+                  <option value="improvement">
+                    Existing Product Improvements
+                  </option>
                   <option value="other">Something Else</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="budget" className="mb-2 block text-sm font-medium text-slate-200">
+                <label
+                  htmlFor="budget"
+                  className="mb-2 block text-sm font-medium text-slate-200"
+                >
                   Estimated budget (optional)
                 </label>
                 <select
@@ -210,8 +219,11 @@ export function ContactForm() {
           )}
 
           <div>
-            <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-200">
-              {type === "project"
+            <label
+              htmlFor="message"
+              className="mb-2 block text-sm font-medium text-slate-200"
+            >
+              {inquiryType === "project"
                 ? "Tell us about your project *"
                 : "Your message *"}
             </label>
@@ -223,7 +235,7 @@ export function ContactForm() {
               maxLength={5000}
               rows={5}
               placeholder={
-                type === "project"
+                inquiryType === "project"
                   ? "What are you hoping to build? What problem does it solve?"
                   : "What would you like to talk about?"
               }
@@ -243,7 +255,7 @@ export function ContactForm() {
               </>
             ) : (
               <>
-                {type === "project"
+                {inquiryType === "project"
                   ? "Send Project Inquiry"
                   : "Send Message"}
                 <ArrowRight className="h-5 w-5" />

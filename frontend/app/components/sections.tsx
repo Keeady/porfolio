@@ -183,7 +183,7 @@ export function SpotAPawCard() {
             and community sightings.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {["React Native", "Next.js", "NestJs", "AI", "Supabase"].map(
+            {["React Native", "Next.js", "NestJs", "AI", "Database", "Mobile", "FullStack"].map(
               (tech) => (
                 <span
                   key={tech}

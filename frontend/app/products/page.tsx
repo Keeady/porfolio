@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import {
   ComingSoonCard,
@@ -6,6 +5,9 @@ import {
   SpotAPawCard,
   StudioCTA,
 } from "../components/sections";
+import ProductShowcase, { Product } from "../components/showcase";
+import { getProjects } from "@/api/projects";
+import ErrorState from "../components/error";
 
 export const metadata: Metadata = {
   title: "Products | Restless Moon Studio",
@@ -13,7 +15,21 @@ export const metadata: Metadata = {
     "Explore software products built by Restless Moon Studio, including AI-powered mobile and web applications.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const projects: Product[] = await getProjects();
+
+  if (!projects || projects.length === 0) {
+    return (
+      <section className="relative flex flex-col items-center overflow-hidden bg-[#040B14] px-6 pb-24 pt-20 text-center">
+        <ErrorState
+          title={"We'll be right back ..."}
+          message="Check out my projects on LinkedIn"
+          redirect="https://linkedin.com/in/camariabevavy"
+        />
+      </section>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -24,7 +40,9 @@ export default function ProductsPage() {
         />
 
         <section className="space-y-8">
-          <SpotAPawCard />
+          {projects.map((p: Product) => (
+            <ProductShowcase key={p.id} product={p} />
+          ))}
           <ComingSoonCard />
         </section>
 

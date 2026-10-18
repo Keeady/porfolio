@@ -1,19 +1,15 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Blocks,
   PawPrint,
   ArrowRight,
+  Sprout,
 } from "lucide-react";
 
 export default function ProductsSection() {
   return (
-    <section
-      id="products"
-      className="relative bg-[#040B14] px-6 py-20"
-    >
+    <section id="products" className="relative bg-[#040B14] px-6 py-20">
       <div className="mx-auto max-w-6xl">
         {/* Section heading */}
         <div className="mb-10">
@@ -26,8 +22,8 @@ export default function ProductsSection() {
           </h2>
 
           <p className="max-w-2xl text-base leading-relaxed text-slate-400">
-            Real products designed to solve everyday problems,
-            built with thoughtful engineering and practical AI.
+            Real products designed to solve everyday problems, built with
+            thoughtful engineering and practical AI.
           </p>
         </div>
 
@@ -37,7 +33,7 @@ export default function ProductsSection() {
           <article className="group overflow-hidden rounded-2xl border border-sky-900/60 bg-[#0A1727] transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/50">
             <div className="relative aspect-[16/9] overflow-hidden bg-[#092336]">
               <Image
-                src="/spotapaw-preview.jpg"
+                src="/spotapaw.png"
                 alt="SpotAPaw lost pet finder app"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -54,9 +50,9 @@ export default function ProductsSection() {
               </div>
 
               <p className="mb-5 leading-relaxed text-slate-400">
-                An AI-powered lost pet finder that helps
-                communities discover missing pets through smart
-                matching, sightings, and local alerts.
+                An AI-powered lost pet finder that helps communities discover
+                missing pets through smart matching, sightings, and local
+                alerts.
               </p>
 
               <a
@@ -71,32 +67,41 @@ export default function ProductsSection() {
             </div>
           </article>
 
-          {/* Future products */}
-          <article className="overflow-hidden rounded-2xl border border-sky-900/60 bg-[#0A1727]">
-            <div className="flex aspect-[16/9] flex-col items-center justify-center gap-4 bg-[#092336]">
-              <Blocks size={44} className="text-sky-400" />
-              <span className="text-lg font-medium text-sky-100/70">
-                Future Products
-              </span>
+          {/* IrieZen */}
+          <article className="group overflow-hidden rounded-2xl border border-sky-900/60 bg-[#0A1727] transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/50">
+            <div className="relative aspect-[16/9] overflow-hidden bg-[#092336]">
+              <Image
+                src="/iriezen.png"
+                alt="IrieZen wellness mobile app"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
 
             <div className="p-6">
-              <h3 className="mb-3 text-xl font-semibold text-slate-100">
-                More Coming Soon
-              </h3>
+              <div className="mb-3 flex items-center gap-2">
+                <Sprout size={20} className="text-sky-400" />
+                <h3 className="text-xl font-semibold text-slate-100">
+                  IrieZen
+                </h3>
+              </div>
 
               <p className="mb-5 leading-relaxed text-slate-400">
-                New software tools and SaaS products in
-                development.
+                IrieZen helps you name your emotions through thoughtful
+                emotional check-ins, gentle reflections, body awareness, and
+                guided breathing.
               </p>
 
-              <Link
-                href="/products"
+              <a
+                href="https://apps.apple.com/us/app/iriezen-emotional-clarity/id6763864620"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-medium text-sky-300 transition-colors hover:text-sky-200"
               >
-                Stay Tuned
+                Explore App
                 <ArrowUpRight size={17} />
-              </Link>
+              </a>
             </div>
           </article>
         </div>

@@ -32,7 +32,7 @@ class SqlAlchemyProjectRepository:
 
     async def get_all(self) -> list[Project]:
         result = await self._session.execute(
-            select(Project).order_by(Project.created_at.desc())
+            select(Project).order_by(Project.rank.asc())
         )
         return list(result.scalars().all())
 

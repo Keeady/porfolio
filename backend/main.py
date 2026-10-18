@@ -5,7 +5,7 @@ from fastapi import FastAPI, Depends, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.schemas.contact_inquiry import ContactInquiryCreated
+from schemas.contact_inquiry import ContactInquiryCreated
 from repositories.project_repository import SqlAlchemyProjectRepository
 from repositories.contact_repository import SqlAlchemyContactInquiryRepository
 from services.projects.project_service import ProjectService
@@ -18,10 +18,7 @@ from services.ai.chat_service import ChatRequest
 from services.posts.writing_service import WritingService
 from repositories.writing_repository import SqlAlchemyWritingRepository
 from fastapi import Depends, FastAPI, status
-from sqlalchemy.orm import Session
-from repositories.contact_repository import (
-    ContactInquiryRepository,
-)
+
 from schemas.contact_inquiry import (
     ContactInquiryCreate,
     ContactInquiryCreated,

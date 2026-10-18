@@ -5,7 +5,10 @@ from sqlalchemy import String, Text, DateTime, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.dialects.postgresql import UUID
 
-class ContactInquiry(DeclarativeBase):
+class Base(DeclarativeBase):
+    pass
+
+class ContactInquiry(Base):
     __tablename__ = "contact_inquiries"
 
     id: Mapped[uuid.UUID] = mapped_column(

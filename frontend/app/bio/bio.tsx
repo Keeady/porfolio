@@ -1,68 +1,75 @@
-"use client";
 
+import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
-/**
- * Bio card — alternates photo/text sides per item, matching the
- * postcard visual system used for ProjectCard (double border, elevated,
- * dashed divider). The photo tilts toward whichever side it's on:
- * left-side photo tilts left, right-side photo tilts right.
- *
- * Fonts: same as ProjectCard — register "PT Serif" via next/font/google
- * in your root layout if you haven't already.
- */
+export type BioItem = {
+  id: string;
+  image_url?: string;
+  photo_alt?: string;
+  description: string;
+};
 
 export interface BioCardProps {
   photoSrc?: string;
   photoAlt?: string;
-  imageOnLeft: boolean; // pass index % 2 === 0 from the list below
-  children: ReactNode; // bio text content
+  imageOnLeft: boolean;
+  children: ReactNode;
 }
 
-export function BioCard({ photoSrc, photoAlt, imageOnLeft, children }: BioCardProps) {
-  const tiltClass = imageOnLeft ? "-rotate-3" : "rotate-3";
-
+export function BioCard({
+  photoSrc,
+  photoAlt,
+  imageOnLeft,
+  children,
+}: BioCardProps) {
   const photo = (
-    <div className="flex flex-1 items-center justify-center p-6">
-      <div className={`${tiltClass} border-4 border-[#f6efdd] bg-[#e9dcc0] shadow-[0_6px_14px_rgba(0,0,0,0.3)]`}>
-        <div className="flex h-40 w-40 items-center justify-center sm:h-48 sm:w-48">
-          {photoSrc ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={photoSrc} alt={photoAlt ?? ""} className="h-full w-full object-cover" />
-          ) : (
-            <ImageIcon size={32} strokeWidth={1.5} className="text-[#7A6A50]" />
-          )}
-        </div>
+    <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-violet-900/40 via-purple-900/20 to-indigo-950/50 p-6 sm:min-h-80 sm:p-10">
+      {/* Soft decorative glow */}
+      <div className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full bg-violet-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-12 -right-12 h-40 w-40 rounded-full bg-indigo-500/20 blur-3xl" />
+
+      <div className="relative aspect-square w-full max-w-64 overflow-hidden rounded-2xl border border-white/10 bg-violet-950/50 shadow-[0_16px_48px_rgba(0,0,0,0.25)] transition-transform duration-500 group-hover:scale-[1.025]">
+        {photoSrc ? (
+          <Image
+            src={photoSrc}
+            alt={photoAlt ?? ""}
+            fill
+            sizes="(max-width: 640px) 256px, 320px"
+            className="object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <ImageIcon
+              size={42}
+              strokeWidth={1.25}
+              className="text-violet-300/50"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
 
   const text = (
-    <div className="flex flex-1 items-center p-6 sm:p-8">
-      <div className="font-serif text-[0.95rem] leading-relaxed text-[#2E2418]">
+    <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+      <div className="max-w-lg space-y-4 text-base leading-relaxed text-slate-300 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_strong]:font-semibold [&_strong]:text-violet-200 [&_a]:text-violet-300 [&_a]:underline-offset-4 hover:[&_a]:underline">
         {children}
       </div>
     </div>
   );
 
   return (
-    <div className="border-[3px] border-[#7A6A50] bg-[#f6efdd] p-1.5 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
-      <div className="flex flex-col border border-[#7A6A50]/70 bg-[#F1E7D0] sm:flex-row">
-        {imageOnLeft ? (
-          <>
-            {photo}
-            <div className="hidden w-px self-stretch border-l border-dashed border-[#7A6A50]/50 sm:block" />
-            {text}
-          </>
-        ) : (
-          <>
-            {text}
-            <div className="hidden w-px self-stretch border-l border-dashed border-[#7A6A50]/50 sm:block" />
-            {photo}
-          </>
-        )}
+    <article className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] transition-colors duration-300 hover:border-violet-400/30 hover:bg-white/[0.06]">
+      <div className="grid grid-cols-1 sm:grid-cols-2">
+        <div className={imageOnLeft ? "sm:order-1" : "sm:order-2"}>
+          {photo}
+        </div>
+
+        <div className={imageOnLeft ? "sm:order-2" : "sm:order-1"}>
+          {text}
+        </div>
       </div>
-    </div>
+    </article>
   );
 }

@@ -25,7 +25,7 @@ export default async function Bio() {
   return (
     <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">
       <div className="mx-auto max-w-6xl">
-        <header className="mx-auto max-w-3xl py-20 text-center md:py-28">
+        <header className="mx-auto max-w-3xl py-10 text-center md:py-18">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">
             About Restless Moon
           </p>

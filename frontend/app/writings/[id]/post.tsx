@@ -1,17 +1,11 @@
-/**
- * components/PostDetail.tsx
- *
- * Individual post page. Continues the same postcard family (paper,
- * elevated double border, dashed inner border) as WritingsList, scaled
- * up to a full page rather than a list card.
- *
- * The image is a CSS float: text bodies wrap around it the old-fashioned
- * way — every body block that appears before the float clears will wrap
- * around the image, not just the first one, which is standard float
- * behavior and matches "content should wrap around it."
- */
 
-import { Caveat, Courier_Prime, Patrick_Hand } from "next/font/google";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  BookOpen,
+  Code2,
+  ExternalLink,
+} from "lucide-react";
 
 export interface WritingWithBodies {
   id: string;
@@ -22,7 +16,7 @@ export interface WritingWithBodies {
   bodies: WritingBody[];
 }
 
-interface WritingBody {
+export interface WritingBody {
   id: string;
   header?: string;
   content: string;
@@ -30,82 +24,148 @@ interface WritingBody {
   url?: string;
 }
 
-const courierPrime = Courier_Prime({ weight: "700", subsets: ["latin"], variable: "--font-courier" });
-const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"], variable: "--font-patrick" });
-const caveat = Caveat({ weight: ["600","700"], subsets: ["latin"], variable: "--font-caveat" });
-
 function BodyBlock({ body }: { body: WritingBody }) {
+  const { header, content, content_type, url } = body;
+
   return (
-    <div className="mb-6 last:mb-0">
-      {body.header && (
-        <h3 className={`mb-2 ${caveat.className} text-xl font-bold text-[#2E2418]`}>
-          {body.header}
-        </h3>
+    <section className="mb-9 last:mb-0">
+      {header && (
+        <h2 className="mb-4 text-xl font-semibold tracking-tight text-white md:text-2xl">
+          {header}
+        </h2>
       )}
 
-      {body.content_type === "code" ? (
-        <pre className="overflow-x-auto border border-dashed border-[#7A6A50]/60 bg-[#e9dcc0] p-3">
-          <code className={`${courierPrime.className} text-sm text-[#2E2418]`}>
-            {body.content}
-          </code>
-        </pre>
+      {content_type === "code" ? (
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0d1020]">
+          <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+            <Code2 className="h-4 w-4 text-violet-400" />
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400">
+              Code
+            </span>
+          </div>
+
+          <pre className="overflow-x-auto p-5 text-sm leading-7 text-violet-100">
+            <code className="font-mono">{content}</code>
+          </pre>
+        </div>
+      ) : content_type === "image" && url ? (
+        <figure className="space-y-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={url}
+            alt={content || header || "Article illustration"}
+            loading="lazy"
+            className="h-auto w-full rounded-xl border border-white/10 object-contain"
+          />
+          {content && (
+            <figcaption className="text-center text-sm text-slate-400">
+              {content}
+            </figcaption>
+          )}
+        </figure>
       ) : (
-        <p className={`${patrickHand.className} text-[1.1rem] leading-relaxed text-[#3a2f22]`}>
-          {body.content}
+        <p className="whitespace-pre-line text-base leading-8 text-slate-300 md:text-[1.0625rem]">
+          {content}
         </p>
       )}
-    </div>
+
+      {url && content_type !== "image" && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-violet-300 hover:text-violet-200"
+        >
+          Related resource
+          <ExternalLink className="h-4 w-4" />
+        </a>
+      )}
+    </section>
   );
 }
 
-export default function PostDetail({ post }: { post: WritingWithBodies }) {
-  const { title, image_url, tags, bodies } = post;
+export default function PostDetail({
+  post,
+}: {
+  post: WritingWithBodies;
+}) {
+  const { title, summary, image_url, tags, bodies } = post;
 
   return (
-    <article className="mx-auto max-w-2xl px-6 py-12">
-      <div className="border-[3px] border-[#7A6A50] bg-[#f6efdd] p-1.5 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
-        <div className="border border-dashed border-[#7A6A50]/70 bg-[#F1E7D0] p-8">
-          {/* title */}
-          <h1 className={`mb-3 ${caveat.className} text-4xl font-bold text-[#2E2418] text-center`}>
+    <main className="min-h-screen bg-[#100d22] px-5 py-12 text-white md:px-8 md:py-20">
+      <article className="mx-auto max-w-4xl">
+        {/* Back navigation */}
+        <Link
+          href="/writings"
+          className="mb-12 inline-flex items-center gap-2 text-sm font-medium text-violet-300 transition hover:text-violet-200"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          All Writings
+        </Link>
+
+        {/* Article header */}
+        <header className="mb-12 text-center">
+          <div className="mb-5 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">
+            <BookOpen className="h-4 w-4" />
+            Engineering Journal
+          </div>
+
+          <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-white md:text-5xl md:leading-tight">
             {title}
           </h1>
 
-          {/* tags, directly under title */}
+          {summary && (
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
+              {summary}
+            </p>
+          )}
+
           {tags && tags.length > 0 && (
-            <div className="mb-5 flex flex-wrap gap-1.5 justify-center">
+            <div className="mt-7 flex flex-wrap justify-center gap-2">
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`border border-[#3B5568]/40 bg-[#e4d6b8] px-2 py-0.5 ${patrickHand.className} text-xs text-[#3B5568]`}
+                  className="rounded-lg border border-violet-400/20 bg-violet-500/10 px-3 py-1.5 text-xs font-medium text-violet-200"
                 >
                   {tag}
                 </span>
               ))}
             </div>
           )}
+        </header>
 
-          {/* image floats left; body content below wraps around it */}
-          {image_url && (
-            // eslint-disable-next-line @next/next/no-img-element
+        {/* Featured image */}
+        {image_url && (
+          <div className="mb-8 overflow-hidden rounded-2xl border border-white/10 bg-violet-950/30">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={image_url}
               alt={title}
-              className="float-left mb-2 mr-5 w-44 border border-[#7A6A50]/50 object-cover sm:w-56"
+              className="mx-auto max-h-[450px] w-full object-contain"
             />
-          )}
+          </div>
+        )}
 
-          {/* body blocks — wrap around the float until content clears it */}
+        {/* Reading surface */}
+        <div className="rounded-3xl border border-white/10 bg-white/[0.04] px-6 py-8 sm:px-10 sm:py-12 md:px-14">
           <div>
-            {bodies.map((body, i) => (
-              <BodyBlock key={i} body={body} />
+            {bodies.map((body) => (
+              <BodyBlock key={body.id} body={body} />
             ))}
           </div>
-
-          {/* clear the float so the card border doesn't collapse if the
-              image is taller than the wrapped text */}
-          <div className="clear-left" />
         </div>
-      </div>
-    </article>
+
+        {/* Footer navigation */}
+        <footer className="mt-12 border-t border-white/10 pt-8">
+          <Link
+            href="/writings"
+            className="inline-flex items-center gap-2 font-medium text-violet-300 transition hover:text-violet-200"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to all writings
+          </Link>
+        </footer>
+      </article>
+    </main>
   );
 }

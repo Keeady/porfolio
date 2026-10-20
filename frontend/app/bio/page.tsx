@@ -44,7 +44,7 @@ export default async function Bio() {
         <section className="space-y-8">
           <BioCard
             imageOnLeft
-            photoSrc="/about/studio-story.jpg"
+            photoSrc="/moon.png"
             photoAlt="The story behind Restless Moon Studio"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">

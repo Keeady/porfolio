@@ -1,5 +1,4 @@
 from typing import Protocol
-from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from db.contact import ContactInquiry
@@ -18,6 +17,6 @@ class SqlAlchemyContactInquiryRepository:
         self._session = session
 
     async def create(self, inquiry: ContactInquiry) -> ContactInquiry:
-        await self._session.add(inquiry)
+        self._session.add(inquiry)
         await self._session.commit()
         return inquiry

@@ -1,9 +1,7 @@
-import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import String, Text, DateTime, func
+from sqlalchemy import String, Text, DateTime, func, BigInteger
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy.dialects.postgresql import UUID
 
 class Base(DeclarativeBase):
     pass
@@ -11,10 +9,9 @@ class Base(DeclarativeBase):
 class ContactInquiry(Base):
     __tablename__ = "contact_inquiries"
 
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
+    id: Mapped[BigInteger] = mapped_column(
+        BigInteger,
         primary_key=True,
-        default=uuid.uuid4,
     )
 
     name: Mapped[str] = mapped_column(String(120), nullable=False)

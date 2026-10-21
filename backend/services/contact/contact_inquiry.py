@@ -1,4 +1,3 @@
-from uuid import UUID
 from db.contact import ContactInquiry
 from repositories.contact_repository import ContactInquiryRepository
 from schemas.contact_inquiry import ContactInquiryCreate

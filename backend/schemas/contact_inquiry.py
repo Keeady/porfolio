@@ -1,10 +1,8 @@
 
 from enum import Enum
-from uuid import UUID
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, model_validator
-
 
 class InquiryType(str, Enum):
     PROJECT = "project"
@@ -42,7 +40,7 @@ class ContactInquiryCreate(BaseModel):
 class ContactInquiryResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
+    id: int
     created_at: datetime
 
 

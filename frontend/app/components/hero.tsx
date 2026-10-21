@@ -21,12 +21,12 @@ const HERO_MESSAGES = [
   {
     title: "Turning Ideas Into Real Products.",
     subtitle:
-      "I create apps, SaaS platforms, and custom software solutions — combining thoughtful design with scalable engineering.",
+      "I create apps, SaaS platforms, and custom software solutions, combining thoughtful design with scalable engineering.",
   },
   {
     title: "Your Idea. Built Into Software.",
     subtitle:
-      "Custom web apps, mobile experiences, and AI-powered solutions — designed, developed, and launched with an experienced software engineer.",
+      "Custom web apps, mobile experiences, and AI-powered solutions designed, developed, and launched with an experienced software engineer.",
   },
   {
     title: "Software That Makes Everyday Life Better.",
@@ -46,7 +46,7 @@ const HERO_MESSAGES = [
   {
     title: "From Idea to Launch.",
     subtitle:
-      "I help businesses and founders turn ideas into real software — building web apps, mobile experiences, SaaS platforms, and AI-powered solutions.",
+      "I help businesses and founders turn ideas into real software, building web apps, mobile experiences, SaaS platforms, and AI-powered solutions.",
   },
 ];
 

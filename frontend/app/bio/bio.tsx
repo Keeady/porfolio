@@ -24,19 +24,19 @@ export function BioCard({
   children,
 }: BioCardProps) {
   const photo = (
-    <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-violet-900/40 via-purple-900/20 to-indigo-950/50 p-6 sm:min-h-80 sm:p-10">
+    <div className="relative flex w-full h-full min-h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-violet-900/40 via-purple-900/20 to-indigo-950/50 p-6 sm:min-h-80 sm:p-10">
       {/* Soft decorative glow */}
       <div className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full bg-violet-500/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-12 -right-12 h-40 w-40 rounded-full bg-indigo-500/20 blur-3xl" />
 
-      <div className="relative aspect-square w-full max-w-64 overflow-hidden rounded-2xl border border-white/10 bg-violet-950/50 shadow-[0_16px_48px_rgba(0,0,0,0.25)] transition-transform duration-500 group-hover:scale-[1.025]">
+      <div className="relative aspect-square w-full items-center justify-center  overflow-hidden rounded-2xl border border-white/10 bg-violet-950/50 shadow-[0_16px_48px_rgba(0,0,0,0.25)] transition-transform duration-500 group-hover:scale-[1.025]">
         {photoSrc ? (
           <Image
             src={photoSrc}
             alt={photoAlt ?? ""}
             fill
             sizes="(max-width: 640px) 256px, 320px"
-            className="object-cover"
+            className="object-contain"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">

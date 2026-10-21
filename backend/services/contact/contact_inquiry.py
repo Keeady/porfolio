@@ -7,7 +7,7 @@ class ContactInquiryService:
     def __init__(self, repository: ContactInquiryRepository):
         self._repository = repository
 
-    def create_inquiry(
+    async def create_inquiry(
         self,
         payload: ContactInquiryCreate,
     ) -> ContactInquiry:
@@ -22,7 +22,7 @@ class ContactInquiryService:
         )
 
         try:
-            created = self._repository.create(inquiry)
+            created = await self._repository.create(inquiry)
 
             return created
 

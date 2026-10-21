@@ -130,13 +130,13 @@ async def writing_by_id(response: Response, post_id: int, service: WritingServic
     response_model=ContactInquiryCreated,
     status_code=status.HTTP_201_CREATED,
 )
-def create_contact_inquiry(
+async def create_contact_inquiry(
     payload: ContactInquiryCreate,
     service: ContactInquiryService = Depends(
         get_contact_inquiry_service
     ),
 ):
-    inquiry = service.create_inquiry(payload)
+    inquiry = await service.create_inquiry(payload)
 
     return ContactInquiryCreated(
         success=True,

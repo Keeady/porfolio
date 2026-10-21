@@ -17,7 +17,7 @@ class SqlAlchemyContactInquiryRepository:
     def __init__(self, session: AsyncSession):
         self._session = session
 
-    def create(self, inquiry: ContactInquiry) -> ContactInquiry:
-        self._session.add(inquiry)
-        self._session.commit()
+    async def create(self, inquiry: ContactInquiry) -> ContactInquiry:
+        await self._session.add(inquiry)
+        await self._session.commit()
         return inquiry

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import ChatWidget from "./components/chat-widget";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <ChatWidget url={apiHost} />
         <Footer />
+        <Analytics/>
       </body>
     </html>
   );

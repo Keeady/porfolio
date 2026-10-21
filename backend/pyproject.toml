@@ -8,6 +8,7 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
     "python-dotenv>=1.2.3",
     "sqlalchemy>=2.0.54",
+    "slowapi==0.1.10"
 ]
 
 [tool.vercel]

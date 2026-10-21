@@ -11,9 +11,9 @@ class InquiryType(str, Enum):
 
 class ContactInquiryCreate(BaseModel):
     type: InquiryType
-    name: str = Field(min_length=1, max_length=120)
+    name: str = Field(min_length=3, max_length=120)
     email: EmailStr
-    message: str = Field(min_length=10, max_length=5000)
+    message: str = Field(min_length=10, max_length=2500)
 
     project_type: str | None = Field(
         default=None,

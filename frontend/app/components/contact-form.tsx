@@ -41,6 +41,10 @@ export function ContactForm({ initialType }: ContactFormProps) {
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
+    if (data["bot"]) {
+      return;
+    }
+
     setSubmitting(true);
     setStatus("idle");
 
@@ -137,6 +141,7 @@ export function ContactForm({ initialType }: ContactFormProps) {
                 type="text"
                 name="name"
                 required
+                minLength={3}
                 maxLength={120}
                 autoComplete="name"
                 placeholder="Your name"
@@ -232,7 +237,7 @@ export function ContactForm({ initialType }: ContactFormProps) {
               name="message"
               required
               minLength={10}
-              maxLength={5000}
+              maxLength={2500}
               rows={5}
               placeholder={
                 inquiryType === "project"
@@ -242,6 +247,17 @@ export function ContactForm({ initialType }: ContactFormProps) {
               className={fieldClass}
             />
           </div>
+
+          <input
+            id="bot"
+            name="bot"
+            type="hidden"
+            autoComplete="email"
+            maxLength={254}
+            className={fieldClass}
+            placeholder="you@example.com"
+            aria-hidden={true}
+          />
 
           <button
             type="submit"

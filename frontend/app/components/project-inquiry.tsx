@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -19,11 +18,15 @@ export function ProjectInquiry() {
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
+    if (data["bot"] ) {
+      return;
+    }
+
     setPending(true);
     setStatus("idle");
 
     try {
-      const response = await submitForm(data, "project")
+      const response = await submitForm(data, "project");
 
       if (!response.ok) throw new Error("Submission failed");
 
@@ -47,8 +50,8 @@ export function ProjectInquiry() {
             Tell us what you're building.
           </h2>
           <p className="mt-4 text-slate-400">
-            Have an idea, a challenge, or an existing product
-            that needs some love? We'd love to hear about it.
+            Have an idea, a challenge, or an existing product that needs some
+            love? We'd love to hear about it.
           </p>
         </div>
 
@@ -58,25 +61,61 @@ export function ProjectInquiry() {
         >
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-200">
+              <label
+                htmlFor="name"
+                className="mb-2 block text-sm font-medium text-slate-200"
+              >
                 Name *
               </label>
-              <input id="name" name="name" type="text" autoComplete="name" required maxLength={120} className={inputClass} placeholder="Your name" />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                minLength={3}
+                maxLength={120}
+                className={inputClass}
+                placeholder="Your name"
+              />
             </div>
             <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-200">
+              <label
+                htmlFor="email"
+                className="mb-2 block text-sm font-medium text-slate-200"
+              >
                 Email *
               </label>
-              <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} className={inputClass} placeholder="you@example.com" />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                maxLength={254}
+                className={inputClass}
+                placeholder="you@example.com"
+              />
             </div>
           </div>
 
           <div>
-            <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-slate-200">
+            <label
+              htmlFor="projectType"
+              className="mb-2 block text-sm font-medium text-slate-200"
+            >
               What do you need help with?
             </label>
-            <select id="projectType" name="projectType" required defaultValue="" className={inputClass}>
-              <option value="" disabled>Select a service</option>
+            <select
+              id="projectType"
+              name="projectType"
+              required
+              defaultValue=""
+              className={inputClass}
+            >
+              <option value="" disabled>
+                Select a service
+              </option>
               <option value="web">Web Application</option>
               <option value="mobile">Mobile Application</option>
               <option value="saas">SaaS / MVP</option>
@@ -88,10 +127,18 @@ export function ProjectInquiry() {
           </div>
 
           <div>
-            <label htmlFor="budget" className="mb-2 block text-sm font-medium text-slate-200">
+            <label
+              htmlFor="budget"
+              className="mb-2 block text-sm font-medium text-slate-200"
+            >
               Estimated budget (optional)
             </label>
-            <select id="budget" name="budget" defaultValue="unsure" className={inputClass}>
+            <select
+              id="budget"
+              name="budget"
+              defaultValue="unsure"
+              className={inputClass}
+            >
               <option value="unsure">Not sure yet</option>
               <option value="under-5k">Under $5,000</option>
               <option value="5k-15k">$5,000–$15,000</option>
@@ -101,7 +148,10 @@ export function ProjectInquiry() {
           </div>
 
           <div>
-            <label htmlFor="details" className="mb-2 block text-sm font-medium text-slate-200">
+            <label
+              htmlFor="details"
+              className="mb-2 block text-sm font-medium text-slate-200"
+            >
               Tell us about your project *
             </label>
             <textarea
@@ -110,11 +160,21 @@ export function ProjectInquiry() {
               rows={5}
               required
               minLength={10}
-              maxLength={5000}
+              maxLength={2500}
               className={inputClass}
               placeholder="What are you hoping to build? What problem does it solve?"
             />
           </div>
+          <input
+            id="bot"
+            name="bot"
+            type="hidden"
+            autoComplete="email"
+            maxLength={254}
+            className={inputClass}
+            placeholder="you@example.com"
+            aria-hidden={true}
+          />
 
           <button
             type="submit"
@@ -122,9 +182,13 @@ export function ProjectInquiry() {
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {pending ? (
-              <><LoaderCircle className="h-5 w-5 animate-spin" /> Sending...</>
+              <>
+                <LoaderCircle className="h-5 w-5 animate-spin" /> Sending...
+              </>
             ) : (
-              <>Send Project Inquiry <ArrowRight className="h-5 w-5" /></>
+              <>
+                Send Project Inquiry <ArrowRight className="h-5 w-5" />
+              </>
             )}
           </button>
 

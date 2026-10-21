@@ -83,7 +83,7 @@ def get_contact_inquiry_service(
 
 
 @app.get("/")
-@limiter.limit("10/minute")
+@limiter.limit("5/minute")
 def read_root(request: Request):
     return {"message": "Hello World!"}
 

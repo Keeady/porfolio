@@ -126,7 +126,7 @@ async def writing_by_id(response: Response, post_id: int, service: WritingServic
     return results
 
 @app.post(
-    "/v1/contact",
+    "/contact",
     response_model=ContactInquiryCreated,
     status_code=status.HTTP_201_CREATED,
 )

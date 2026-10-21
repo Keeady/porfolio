@@ -22,13 +22,9 @@ class ContactInquiryService:
         )
 
         try:
-            created = self.repository.create(inquiry)
-
-            self.db.commit()
-            self.db.refresh(created)
+            created = self._repository.create(inquiry)
 
             return created
 
         except Exception:
-            self.db.rollback()
             raise

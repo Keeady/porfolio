@@ -3,6 +3,7 @@
 
 import { useState, type FormEvent } from "react";
 import { ArrowRight, LoaderCircle } from "lucide-react";
+import { submitForm } from "@/api/contact";
 
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400";
@@ -22,11 +23,7 @@ export function ProjectInquiry() {
     setStatus("idle");
 
     try {
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await submitForm(data, "project")
 
       if (!response.ok) throw new Error("Submission failed");
 

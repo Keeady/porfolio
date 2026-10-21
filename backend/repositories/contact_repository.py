@@ -18,6 +18,6 @@ class SqlAlchemyContactInquiryRepository:
         self._session = session
 
     def create(self, inquiry: ContactInquiry) -> ContactInquiry:
-        self.db.add(inquiry)
-        self.db.flush()
+        self._session.add(inquiry)
+        self._session.commit()
         return inquiry

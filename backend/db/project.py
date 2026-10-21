@@ -10,8 +10,8 @@ so the ORM stays swappable.
 import uuid
 from datetime import datetime
 
-from sqlalchemy import ARRAY, DateTime, String, Text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import ARRAY, DateTime, String, Text, Integer
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -33,4 +33,28 @@ class Project(Base):
     image_url: Mapped[str] = mapped_column(String(500), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=datetime.utcnow
+    )
+    images: Mapped[list[dict]] = mapped_column(
+        JSONB,
+        nullable=False,
+        default=list,
+    )
+    features: Mapped[list[str]] = mapped_column(
+        ARRAY(String),
+        nullable=False,
+        default=list,
+    )
+    rank: Mapped[int] = mapped_column(Integer, nullable=True)
+    category: Mapped[str] = mapped_column(
+        String(150),
+        nullable=False,
+    )
+    tagline: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+    primary_link: Mapped[dict | None] = mapped_column(
+        "primary_link",
+        JSONB,
+        nullable=True,
     )

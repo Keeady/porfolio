@@ -1,12 +1,14 @@
 import { getBio } from "@/api/bio";
-import { BioCard } from "./bio";
+import { BioCard, BioItem } from "./bio";
 import ErrorState from "../components/error";
+import { Metadata } from "next";
+import { StudioCTA } from "../components/sections";
+import { FounderSection } from "./founder-section";
 
-type BioItem = {
-  id: string;
-  image_url?: string;
-  photo_alt?: string;
-  description: string;
+export const metadata: Metadata = {
+  title: "About | Restless Moon Studio",
+  description:
+    "Meet Restless Moon Studio, an independent software development studio building web, mobile, and AI-powered products.",
 };
 
 export default async function Bio() {
@@ -21,20 +23,33 @@ export default async function Bio() {
   }
 
   return (
-    <section className="relative flex flex-col items-center overflow-hidden bg-[#040B14] px-6 pb-24 pt-20 text-center">
-      <div className="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-12">
-        {bioItems &&
-          bioItems.map((item: BioItem, i: number) => (
-            <BioCard
-              key={item.id}
-              photoSrc={item.image_url}
-              photoAlt={item.photo_alt}
-              imageOnLeft={i % 2 === 0}
-            >
-              {item.description}
-            </BioCard>
-          ))}
+    <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">
+      <div className="mx-auto max-w-6xl">
+        <header className="mx-auto max-w-3xl pt-10 text-center md:pt-18">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">
+            About Restless Moon
+          </p>
+
+          <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+            Independent by nature.
+            <span className="block text-violet-300">Curious by design.</span>
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+            Restless Moon is an independent software studio bringing thoughtful
+            digital experiences to life from the first spark of an idea to
+            products used in the real world. Great ideas deserve the chance to
+            become real. We combine creativity with practical engineering to
+            build software that is useful, intuitive, and designed to grow.
+          </p>
+        </header>
+
+        <FounderSection items={bioItems} />
+        <StudioCTA
+          title="Have an idea?"
+          description="Let's explore what's possible and bring it to life together."
+        />
       </div>
-    </section>
+    </main>
   );
 }

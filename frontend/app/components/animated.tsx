@@ -4,7 +4,7 @@ export const ShowHappyDogAnimation = () => (
   <Lottie
     src={"/happydog.json"}
     autoplay={true}
-    loop={true}
+    loop={false}
     style={{ width: 220, height: 220 }}
   />
 );

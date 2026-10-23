@@ -82,20 +82,34 @@ export function FounderSection({ items }: { items: BioItem[] }) {
           <h2>A decade of building.</h2>
 
           <p>
-            I've spent over 10 years building software, from startups to
-            large-scale systems at Microsoft to independent products that
-            started as ideas and became real applications.
+            I’m a Senior Software Engineer and the founder of Restless Moon
+            Studio, an independent software studio where I build my own products
+            and help businesses bring theirs to life.
           </p>
-
           <p>
-            My experience spans full-stack development, backend systems, mobile
-            applications, and AI-powered features.
+            With 10+ years of experience across the full stack, including <strong>5
+            years at Datto</strong> and <strong>6.5 years at Microsoft</strong> working on Teams and
+            Outlook, I bring both a large-scale engineering experience and the
+            hands-on ownership of an independent builder. I enjoy taking an idea
+            from the first conversation through architecture, development,
+            testing, deployment, and ongoing improvement.
           </p>
-
           <p>
-            Today, I bring that experience into Restless Moon Studio, combining
-            thoughtful engineering with a passion for turning ideas into useful
-            products.
+            At Microsoft, I built systems and experiences used by <strong>millions of
+            people</strong>. Today, I apply that experience to building products from the
+            ground up. Building these products has given me ownership of every
+            part of the process from architecture, designing, to app store
+            submission and user feedback. It also keeps me close to the
+            practical decisions businesses face: what to build first, where to
+            simplify, and how to balance speed with a foundation that can grow.
+          </p>
+          <p>
+            I care about clear communication, thoughtful design, maintainable
+            code, and reliable systems. When I work with someone, I want to
+            understand the problem behind the feature and help find a practical
+            way forward. That includes applying AI where it delivers real value
+            and making technical decisions that fit the product, budget, and
+            stage of the business.
           </p>
         </BioCard>
 

@@ -36,7 +36,7 @@ class SqlAlchemyProjectRepository:
         )
         return list(result.scalars().all())
 
-    async def get_by_id(self, project_id: UUID) -> Project | None:
+    async def get_by_id(self, project_id: int) -> Project | None:
         result = await self._session.execute(
             select(Project).where(Project.id == project_id)
         )

@@ -1,11 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  PawPrint,
-  ArrowRight,
-  Sprout,
-} from "lucide-react";
+import { ArrowUpRight, PawPrint, ArrowRight, Sprout } from "lucide-react";
 
 export default function ProductsSection() {
   return (
@@ -56,9 +51,7 @@ export default function ProductsSection() {
               </p>
 
               <a
-                href="https://play.google.com/store/apps/details?id=com.bcamaria.SpotAPaw"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/products/spotapaw"
                 className="inline-flex items-center gap-2 font-medium text-sky-300 transition-colors hover:text-sky-200"
               >
                 Explore App
@@ -94,9 +87,7 @@ export default function ProductsSection() {
               </p>
 
               <a
-                href="https://apps.apple.com/us/app/iriezen-emotional-clarity/id6763864620"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/products/iriezen"
                 className="inline-flex items-center gap-2 font-medium text-sky-300 transition-colors hover:text-sky-200"
               >
                 Explore App

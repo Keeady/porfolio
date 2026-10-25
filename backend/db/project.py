@@ -58,3 +58,8 @@ class Project(Base):
         JSONB,
         nullable=True,
     )
+    secondary_link: Mapped[dict | None] = mapped_column(
+        "secondary_link",
+        JSONB,
+        nullable=True,
+    )

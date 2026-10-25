@@ -302,6 +302,7 @@ export default async function IrieZenPage() {
         </section>
 
         {/* Screenshot gallery */}
+        {product.images.length > 0 && (
         <section aria-label="IrieZen app screenshots" className="pb-24">
           <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6">
             {product.images.map((screen) => (
@@ -327,6 +328,7 @@ export default async function IrieZenPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Why IrieZen */}
         <section className="py-12">

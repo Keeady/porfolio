@@ -225,6 +225,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
 
 export default async function SpotAPawPage() {
     const product: Product = await getProjectById("1");
+    const images = product.images ?? [];
   
   return (
     <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">
@@ -291,10 +292,10 @@ export default async function SpotAPawPage() {
         </section>
 
         {/* Screenshots */}
-        {product.images.length > 0 && (
+        {images.length > 0 && (
           <section aria-label="SpotAPaw app screenshots" className="pb-20">
             <div className="flex snap-x gap-5 overflow-x-auto pb-6">
-              {product.images.map((screenshot) => (
+              {images.map((screenshot) => (
                 <figure
                   key={screenshot.src}
                   className="w-56 shrink-0 snap-center sm:w-64"

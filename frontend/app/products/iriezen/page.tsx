@@ -246,6 +246,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
 
 export default async function IrieZenPage() {
   const product: Product = await getProjectById("5");
+  const images = product.images ?? [];
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#100d22] px-5 text-white md:px-8">
@@ -302,10 +303,10 @@ export default async function IrieZenPage() {
         </section>
 
         {/* Screenshot gallery */}
-        {product.images.length > 0 && (
+        {images.length > 0 && (
         <section aria-label="IrieZen app screenshots" className="pb-24">
           <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6">
-            {product.images.map((screen) => (
+            {images.map((screen) => (
               <figure
                 key={screen.src}
                 className="w-56 shrink-0 snap-center sm:w-64"

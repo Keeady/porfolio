@@ -195,7 +195,7 @@ export function SpotAPawCard() {
             )}
           </div>
           <a
-            href="https://play.google.com/store/apps/details?id=com.bcamaria.SpotAPaw"
+            href="/products/spotapaw"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 font-semibold text-violet-300 hover:text-violet-200"

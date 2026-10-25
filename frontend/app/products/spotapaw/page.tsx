@@ -23,6 +23,8 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import { getProjectById } from "@/api/projects";
+import { Product } from "@/app/components/showcase";
 
 export const metadata: Metadata = {
   title: "SpotAPaw | AI-Powered Lost Pet Finder | Restless Moon Studio",
@@ -221,7 +223,9 @@ function FeatureCard({ feature }: { feature: Feature }) {
   );
 }
 
-export default function SpotAPawPage() {
+export default async function SpotAPawPage() {
+    const product: Product = await getProjectById("1");
+  
   return (
     <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -246,7 +250,7 @@ export default function SpotAPawPage() {
 
           <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
             <div className="mb-7 flex h-20 w-20 items-center justify-center rounded-3xl border border-violet-400/30 bg-gradient-to-br from-violet-600/30 to-indigo-900/50 shadow-[0_12px_40px_rgba(94,56,180,0.2)]">
-              <PawPrint className="h-11 w-11 text-violet-200" />
+              <Image src="/spotapaw.png" alt="Spotapaw icon" width={48} height={48} />
             </div>
 
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">
@@ -287,10 +291,10 @@ export default function SpotAPawPage() {
         </section>
 
         {/* Screenshots */}
-        {screenshots.length > 0 && (
+        {product.images.length > 0 && (
           <section aria-label="SpotAPaw app screenshots" className="pb-20">
             <div className="flex snap-x gap-5 overflow-x-auto pb-6">
-              {screenshots.map((screenshot) => (
+              {product.images.map((screenshot) => (
                 <figure
                   key={screenshot.src}
                   className="w-56 shrink-0 snap-center sm:w-64"
@@ -305,7 +309,7 @@ export default function SpotAPawPage() {
                     />
                   </div>
                   <figcaption className="mt-4 text-center text-sm text-slate-400">
-                    {screenshot.label}
+                    {screenshot.alt}
                   </figcaption>
                 </figure>
               ))}

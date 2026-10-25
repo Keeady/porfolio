@@ -101,6 +101,21 @@ async def project_list(
     response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
     return results
 
+@app.get("/projects/{project_id}")
+@limiter.limit("5/minute")
+async def project_list(
+    request: Request,
+    response: Response, 
+    project_id: int,
+    service: ProjectService = Depends(get_project_service)
+):
+    results = await service.get_project(project_id)
+    response.headers["Vercel-Cache-Tag"] = f"projects_{project_id}"
+    response.headers["Vercel-CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
+    response.headers["Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
+    response.headers["CDN-Cache-Control"] = "s-maxage=86400, stale-while-revalidate=3600, stale-if-error=3600"
+    return results
+
 @app.get("/bio")
 @limiter.limit("5/minute")
 async def bio_list(

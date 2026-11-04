@@ -8,7 +8,7 @@ from schemas.survey_questionnaire import QuestionnaireSubmissionCreate
 
 class QuestionnaireSubmissionService:
     def __init__(self, repository: QuestionnaireSubmissionRepository) -> None:
-        self.repository = repository
+        self._repository = repository
  
     async def create_submission(
         self, payload: QuestionnaireSubmissionCreate
@@ -21,4 +21,10 @@ class QuestionnaireSubmissionService:
             answers=[answer.model_dump() for answer in payload.answers],
         )
 
-        return await self.repository.create(submission)
+        try:
+            created = await self._repository.create(submission)
+
+            return created
+
+        except Exception:
+            raise

@@ -9,12 +9,9 @@ class QuestionnaireSubmissionRepository(Protocol):
     
 class SqlAlchemyQuestionnaireSubmissionRepository: 
     def __init__(self, session: AsyncSession):
-            self._session = session
+        self._session = session
  
     async def create(self, submission: QuestionnaireSubmission) -> QuestionnaireSubmission:
         self._session.add(submission)
-        try:
-            await self._session.commit()
-        except Exception:
-            raise
+        await self._session.commit()
         return submission

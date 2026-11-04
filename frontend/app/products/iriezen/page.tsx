@@ -246,7 +246,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
 
 export default async function IrieZenPage() {
   const product: Product = await getProjectById("5");
-  const images = product.images ?? [];
+  const images = product?.images ?? [];
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#100d22] px-5 text-white md:px-8">

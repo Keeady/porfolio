@@ -1,7 +1,7 @@
 export async function submitForm(data: any, type: string) {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
-    return;
+    throw new Error("Invalid api");
   }
 
   try {
@@ -11,7 +11,7 @@ export async function submitForm(data: any, type: string) {
       body: JSON.stringify({ ...data, type }),
     });
     if (!res.ok) {
-      throw new Error("Failed to fetch bio");
+      throw new Error("Failed to send contact");
     }
     return res.json();
   } catch (error) {

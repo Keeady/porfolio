@@ -224,8 +224,8 @@ function FeatureCard({ feature }: { feature: Feature }) {
 }
 
 export default async function SpotAPawPage() {
-    const product: Product = await getProjectById("1");
-    const images = product.images ?? [];
+  const product: Product = await getProjectById("1");
+  const images = product?.images ?? [];
   
   return (
     <main className="min-h-screen bg-[#100d22] px-5 text-white md:px-8">

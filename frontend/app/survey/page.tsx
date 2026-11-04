@@ -20,8 +20,6 @@ import {
   type Question,
 } from "@/api/questionnaire";
 
-const API_URL = process.env.API_HOST;
-
 interface AnswerState {
   selected: string[];
   text: string;

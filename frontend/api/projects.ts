@@ -1,7 +1,6 @@
 export async function getProjects() {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
-    console.log("getProjects " + url);
     return;
   }
 
@@ -18,9 +17,8 @@ export async function getProjects() {
 }
 
 export async function getProjectById(id: string) {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
-    console.log("getProjects " + url);
     return;
   }
 

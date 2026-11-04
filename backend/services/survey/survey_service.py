@@ -1,0 +1,28 @@
+from datetime import datetime, timezone
+
+from db.survey import QuestionnaireSubmission
+from repositories.survey_repository import QuestionnaireSubmissionRepository
+from schemas.survey_questionnaire import QuestionnaireSubmissionCreate
+
+
+class QuestionnaireSubmissionService:
+    def __init__(self, repository: QuestionnaireSubmissionRepository) -> None:
+        self._repository = repository
+ 
+    async def create_submission(
+        self, payload: QuestionnaireSubmissionCreate
+    ) -> QuestionnaireSubmission:
+        submission = QuestionnaireSubmission(
+            questionnaire_id=payload.questionnaire_id,
+            submitted_at=payload.submitted_at,
+            received_at=datetime.now(timezone.utc),
+            answers=[answer.model_dump() for answer in payload.answers],
+        )
+
+        try:
+            created = await self._repository.create(submission)
+
+            return created
+
+        except Exception:
+            raise

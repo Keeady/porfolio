@@ -5,6 +5,9 @@ from fastapi import FastAPI, Depends, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.ext.asyncio import AsyncSession
+from repositories.survey_repository import SqlAlchemyQuestionnaireSubmissionRepository
+from schemas.survey_questionnaire import QuestionnaireSubmissionCreate, QuestionnaireSubmissionCreated, QuestionnaireSubmissionResponse
+from services.survey.survey_service import QuestionnaireSubmissionService
 from schemas.contact_inquiry import ContactInquiryCreated
 from repositories.project_repository import SqlAlchemyProjectRepository
 from repositories.contact_repository import SqlAlchemyContactInquiryRepository
@@ -81,6 +84,13 @@ def get_contact_inquiry_service(
     repository = SqlAlchemyContactInquiryRepository(session)
     return ContactInquiryService(repository)
 
+def get_questionnaire_submission_service(
+        session: AsyncSession = Depends(get_db_session)
+) -> QuestionnaireSubmissionService:
+    repository = SqlAlchemyQuestionnaireSubmissionRepository(session)
+    return QuestionnaireSubmissionService(repository)
+ 
+
 
 @app.get("/")
 @limiter.limit("5/minute")
@@ -103,7 +113,7 @@ async def project_list(
 
 @app.get("/projects/{project_id}")
 @limiter.limit("5/minute")
-async def project_list(
+async def project_id(
     request: Request,
     response: Response, 
     project_id: int,
@@ -191,4 +201,22 @@ async def create_contact_inquiry(
     return ContactInquiryCreated(
         success=True,
         inquiry=ContactInquiryResponse.model_validate(inquiry),
+    )
+
+@app.post(
+    "/questionnaires",
+    response_model=QuestionnaireSubmissionCreated,
+    status_code=status.HTTP_201_CREATED,
+)
+@limiter.limit("1/minute;3/hour;10/day")
+async def create_questionnaire_submission(
+    request: Request,
+    payload: QuestionnaireSubmissionCreate,
+    service: QuestionnaireSubmissionService = Depends(get_questionnaire_submission_service),
+):
+    submission = await service.create_submission(payload)
+ 
+    return QuestionnaireSubmissionCreated(
+        success=True,
+        submission=QuestionnaireSubmissionResponse.model_validate(submission),
     )

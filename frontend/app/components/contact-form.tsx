@@ -57,7 +57,8 @@ export function ContactForm({ initialType }: ContactFormProps) {
 
       form.reset();
       setStatus("success");
-    } catch {
+    } catch (error) {
+      console.log(error)
       setStatus("error");
     } finally {
       setSubmitting(false);

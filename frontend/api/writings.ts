@@ -1,5 +1,5 @@
 export async function getWritings() {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
     return;
   }
@@ -17,7 +17,7 @@ export async function getWritings() {
 }
 
 export async function getWritingById(id: string) {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
     return;
   }

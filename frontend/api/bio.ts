@@ -1,5 +1,5 @@
 export async function getBio() {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
     return;
   }

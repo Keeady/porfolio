@@ -263,7 +263,7 @@ export const QUESTIONS: Question[] = [
 ];
 
 export async function submitForm(data: any) {
-  const url = process.env.API_HOST;
+  const url = process.env.NEXT_PUBLIC_API_HOST;
   if (!url) {
     return;
   }

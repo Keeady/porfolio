@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const apiHost = process.env.API_HOST || "";
+  const apiHost = process.env.NEXT_PUBLIC_API_HOST || "";
   return (
     <html
       lang="en"

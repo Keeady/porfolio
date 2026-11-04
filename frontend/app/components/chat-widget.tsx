@@ -162,15 +162,6 @@ export default function ChatWidget({ url }: IChatWidget) {
           </div>
         </div>
       )}
-
-      {/* launcher button */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        aria-label={open ? "Close chat" : "Open chat"}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-400 text-[#040B14] shadow-lg transition-transform hover:scale-105"
-      >
-        {open ? <X size={22} /> : <MessageCircle size={22} />}
-      </button>
     </div>
   );
 }

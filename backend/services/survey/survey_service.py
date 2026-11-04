@@ -1,5 +1,4 @@
 from datetime import datetime, timezone
-import uuid
 
 from db.survey import QuestionnaireSubmission
 from repositories.survey_repository import QuestionnaireSubmissionRepository
@@ -14,7 +13,6 @@ class QuestionnaireSubmissionService:
         self, payload: QuestionnaireSubmissionCreate
     ) -> QuestionnaireSubmission:
         submission = QuestionnaireSubmission(
-            id=str(uuid.uuid4()),
             questionnaire_id=payload.questionnaire_id,
             submitted_at=payload.submitted_at,
             received_at=datetime.now(timezone.utc),

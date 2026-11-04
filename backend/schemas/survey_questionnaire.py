@@ -38,7 +38,6 @@ class QuestionnaireSubmissionCreate(BaseModel):
 class QuestionnaireSubmissionResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
  
-    id: str
     questionnaire_id: str
     submitted_at: datetime
     received_at: datetime

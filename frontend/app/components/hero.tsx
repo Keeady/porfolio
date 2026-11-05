@@ -26,28 +26,12 @@ const HERO_MESSAGES = [
   {
     title: "Your Idea. Built Into Software.",
     subtitle:
-      "Custom web apps, mobile experiences, and AI-powered solutions designed, developed, and launched with an experienced software engineer.",
-  },
-  {
-    title: "Software That Makes Everyday Life Better.",
-    subtitle:
-      "Discover apps and digital tools designed to solve real problems, built with care and powered by modern technology.",
-  },
-  {
-    title: "Thoughtful Software. Real-World Impact.",
-    subtitle:
-      "I create digital products, AI-powered applications, and custom software that help people and businesses solve meaningful problems.",
-  },
-  {
-    title: "I Build Software That Solves Real Problems.",
-    subtitle:
-      "I'm a full-stack software engineer creating apps, SaaS products, and custom software solutions, from concept to launch.",
-  },
-  {
-    title: "From Idea to Launch.",
-    subtitle:
       "I help businesses and founders turn ideas into real software, building web apps, mobile experiences, SaaS platforms, and AI-powered solutions.",
   },
+  {
+    title: "Your Software Into Better Products.",
+    subtitle:
+      "I help improve, modernize, and scale existing products—from untangling codebases and fixing technical challenges to building what comes next.",  },
 ];
 
 const ROTATION_INTERVAL = 7000;

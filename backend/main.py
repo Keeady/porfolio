@@ -203,6 +203,7 @@ async def create_contact_inquiry(
         inquiry=ContactInquiryResponse.model_validate(inquiry),
     )
 
+'''
 @app.post(
     "/questionnaires",
     response_model=QuestionnaireSubmissionCreated,
@@ -220,3 +221,4 @@ async def create_questionnaire_submission(
         success=True,
         submission=QuestionnaireSubmissionResponse.model_validate(submission),
     )
+'''

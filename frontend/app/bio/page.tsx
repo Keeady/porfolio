@@ -1,9 +1,11 @@
 import { getBio } from "@/api/bio";
-import { BioCard, BioItem } from "./bio";
-import ErrorState from "../components/error";
+import { BioItem } from "./bio";
 import { Metadata } from "next";
 import { StudioCTA } from "../components/sections";
 import { FounderSection } from "./founder-section";
+import ErrorView from "../components/error-view";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About | Restless Moon Studio",
@@ -16,9 +18,21 @@ export default async function Bio() {
 
   if (!bioItems || bioItems.length === 0) {
     return (
-      <section className="relative flex flex-col items-center overflow-hidden bg-[#040B14] px-6 pb-24 pt-20 text-center">
-        <ErrorState title={"We'll be right back ..."} />
-      </section>
+      <ErrorView
+        code="404"
+        title="Page not found ..."
+        message="The page you're looking for doesn't exist or has been moved."
+      >
+        <Link
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://linkedin.com/in/camariabevavy"
+          className="inline-flex gap-2 items-center justify-center rounded-full bg-sky-400 px-7 py-3 text-sm font-semibold text-[#040B14] transition-all hover:scale-[1.03] hover:bg-sky-300"
+        >
+          Checkout my profile on LinkedIn
+          <ExternalLink className="h-4 w-4" />
+        </Link>
+      </ErrorView>
     );
   }
 

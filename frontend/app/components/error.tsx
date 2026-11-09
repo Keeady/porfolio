@@ -2,18 +2,6 @@
 
 import { ShowHappyDogAnimation } from "./animated";
 
-/**
- * Generic error state, backed by a Lottie animation.
- * Requires: npm install lottie-react
- *
- * Usage — full page (e.g. app/not-found.tsx):
- *   <ErrorState
- *     title="This page wandered off"
- *     message="Looks like there's nothing here. Even the cat is confused."
- *     redirect="http://check-this-out"
- *   />
- */
-
 export interface ErrorStateProps {
   title: string;
   message?: string;

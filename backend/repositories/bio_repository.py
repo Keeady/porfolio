@@ -18,5 +18,5 @@ class SqlAlchemyBioRepository:
         self._session = session
 
     async def get_all(self) -> list[Bio]:
-        result = await self._session.execute(select(Bio))
+        result = await self._session.execute(select(Bio).order_by(Bio.id.asc()))
         return list(result.scalars().all())

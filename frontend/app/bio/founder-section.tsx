@@ -21,8 +21,8 @@ export function FounderSection({ items }: { items: BioItem[] }) {
         {/* Education */}
         <BioCard
           imageOnLeft
-          photoSrc={items[0].image_url}
-          photoAlt={items[0].photo_alt}
+          photoSrc={items[2].image_url}
+          photoAlt={items[2].photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             01 / My Journey
@@ -72,8 +72,8 @@ export function FounderSection({ items }: { items: BioItem[] }) {
         {/* Professional experience */}
         <BioCard
           imageOnLeft={false}
-          photoSrc={items[2].image_url}
-          photoAlt={items[2].photo_alt}
+          photoSrc={items[0].image_url}
+          photoAlt={items[0].photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             02 / My Experience

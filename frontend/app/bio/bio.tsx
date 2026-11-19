@@ -8,6 +8,7 @@ export type BioItem = {
   image_url?: string;
   photo_alt?: string;
   description: string;
+  key: string;
 };
 
 export interface BioCardProps {

@@ -21,8 +21,8 @@ export function FounderSection({ items }: { items: { [key: string]: BioItem } })
         {/* Education */}
         <BioCard
           imageOnLeft
-          photoSrc={items["education"].image_url}
-          photoAlt={items["education"].photo_alt}
+          photoSrc={items["education"]?.image_url}
+          photoAlt={items["education"]?.photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             01 / My Journey
@@ -72,8 +72,8 @@ export function FounderSection({ items }: { items: { [key: string]: BioItem } })
         {/* Professional experience */}
         <BioCard
           imageOnLeft={false}
-          photoSrc={items["experience"].image_url}
-          photoAlt={items["experience"].photo_alt}
+          photoSrc={items["experience"]?.image_url}
+          photoAlt={items["experience"]?.photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             02 / My Experience
@@ -116,7 +116,7 @@ export function FounderSection({ items }: { items: { [key: string]: BioItem } })
         {/* Current location */}
         <BioCard
           imageOnLeft
-          photoSrc={items["home"].image_url}
+          photoSrc={items["home"]?.image_url}
           photoAlt="A favorite scene from where I live"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
@@ -148,8 +148,8 @@ export function FounderSection({ items }: { items: { [key: string]: BioItem } })
         {/* Origin */}
         <BioCard
           imageOnLeft={false}
-          photoSrc={items["origin"].image_url}
-          photoAlt={items["origin"].photo_alt}
+          photoSrc={items["origin"]?.image_url}
+          photoAlt={items["origin"]?.photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             04 / My Roots
@@ -187,8 +187,8 @@ export function FounderSection({ items }: { items: { [key: string]: BioItem } })
         {/* Hobbies */}
         <BioCard
           imageOnLeft
-          photoSrc={items["hobbies"].image_url}
-          photoAlt={items["hobbies"].photo_alt}
+          photoSrc={items["hobbies"]?.image_url}
+          photoAlt={items["hobbies"]?.photo_alt}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">
             05 / Beyond the Code

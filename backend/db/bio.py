@@ -18,3 +18,4 @@ class Bio(Base):
     description: Mapped[str] = mapped_column(Text, nullable=False)
     image_url: Mapped[str] = mapped_column(String(500), nullable=True)
     photo_alt: Mapped[str] = mapped_column(String(500), nullable=True)
+    key: Mapped[str] = mapped_column(String(50), nullable=False)

@@ -15,6 +15,13 @@ export const metadata: Metadata = {
 
 export default async function Bio() {
   const bioItems: BioItem[] = await getBio();
+  const imagesWithKey: { [key: string]: BioItem } = {};
+
+  if (bioItems && bioItems.length > 0) {
+    bioItems.forEach((item) => {
+      imagesWithKey[item.key] = item;
+    });
+  }
 
   if (!bioItems || bioItems.length === 0) {
     return (
@@ -58,7 +65,7 @@ export default async function Bio() {
           </p>
         </header>
 
-        <FounderSection items={bioItems} />
+        <FounderSection items={imagesWithKey} />
         <StudioCTA
           title="Have an idea?"
           description="Let's explore what's possible and bring it to life together."

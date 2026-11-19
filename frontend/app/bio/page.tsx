@@ -19,7 +19,7 @@ export default async function Bio() {
 
   if (bioItems && bioItems.length > 0) {
     bioItems.forEach((item) => {
-      console.log(item.key, item.image_url);
+      console.log("data: ", item.key, item.image_url);
       imagesWithKey[item.key] = item;
     });
   }

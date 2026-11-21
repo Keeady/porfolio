@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "We build thoughtful software that solves real problems. Explore our apps, SaaS products, and custom web, mobile, and AI-powered solutions.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image-v2.png",
         width: 1200,
         height: 630,
         alt: "Restless Moon Studio — Turning Ideas Into Real Products",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Restless Moon Studio | Software & AI Solutions",
     description:
       "From idea to launch. Explore our apps and SaaS products, or work with us to create custom software and AI-powered solutions.",
-    images: ["/og-image.png"],
+    images: ["/og-image-v2.png"],
   },
 
   robots: {
